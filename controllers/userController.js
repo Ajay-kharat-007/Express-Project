@@ -17,14 +17,15 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User already registered!!");
   }
-
+  
   //   Hash password
-  const hashedPassword = await bcrypt.hash(password, 10);
-  console.log("Hashed Password: ", hashedPassword);
+  // const hashedPassword = await bcrypt.hash(password, 10);
+  // console.log("the register user function called")
+  // console.log("Hashed Password: ", hashedPassword);
   const user = await User.create({
     username,
     email,
-    password: hashedPassword,
+    password
   });
 
   console.log(`User created ${user}`);
@@ -45,13 +46,18 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+
   if (!email || !password) {
     res.status(400);
     throw new Error("All fields are mandatory!");
   }
   const user = await User.findOne({ email });
+  const userPassword = user.password == password
   // compare password with hashpassword
-  if (user && (await bcrypt.compare(password, user.password))) {
+  // if (user && (await bcrypt.compare(password, user.password))) {
+    console.log(user)
+    if (user && userPassword) {
+    console.log(password)
     const accessToken = jwt.sign(
       {
         user: {
