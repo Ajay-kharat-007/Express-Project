@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const userDataSchema = mongoose.Schema({
     user_id : {
         type : mongoose.Schema.Types.ObjectId,
-        required : true,
+        // required : true,
         ref : "User",
     },
     // name : {
@@ -16,112 +16,115 @@ const userDataSchema = mongoose.Schema({
     // },
     // phone : {
     //     type : String,
-    //     require : [true, "Please add the Phone Number"],
+    //     require : [true, "Please add the Phone String"],
     // },
     brideOrGroom: {
         type: String,
-        required: [true, "Please select bride"]
+        // // required: [true, "Please select bride"]
     },
     maritalStatus: {
         type: String,
-        required: [true, "Please select Marital Status"]
+        // // required: [true, "Please select Marital Status"]
     },
     fNameEnglish: {
         type: String,
-        required: [true, "Please Enter First Name"]
+        // // required: [true, "Please Enter First Name"]
     },
     mNameEnglish: {
         type: String,
-        required: [true, "Please Enter Middle Name"]
+        // // required: [true, "Please Enter Middle Name"]
     },
     lNameEnglish: {
         type: String,
-        required: [true, "Please Enter Last Name"]
+        // required: [true, "Please Enter Last Name"]
     },
     dateOfBirth: {
         type: String,
-        required: [true, "Please Enter Date Of Birth"]
+        // required: [true, "Please Enter Date Of Birth"]
     },
     height: {
-        type: Number
+        type: String
     },
     weight: {
-        type: Number
+        type: String
     },
     bloodGroup: {
         type: String
     },
     mobile: {
-        type: Number,
-        required: [true, "Please Enter Mobile Number"]
+        type: String,
+        // required: [true, "Please Enter Mobile String"]
     },
     image : {
         data : Buffer,
         contentType : String
     },
+    imagePath : {
+        type : String
+    },
     email: {
         type: String,
-        required: [true, "Please Enter Email"]
+        // required: [true, "Please Enter Email"]
     },
-    whatsappNumber: {
-        type: Number
+    whatsappString: {
+        type: String
     },
     parentName: {
         type: String,
-        required: [true, "Please Enter Parent Name"]
+        // required: [true, "Please Enter Parent Name"]
     },
     relationWithParent: {
         type: String,
-        required: [true, "Please Enter Relation With Parent"]
+        // required: [true, "Please Enter Relation With Parent"]
     },
     parentOccupation: {
         type: String,
-        required: [true, "Please Enter Parent Occupation"]
+        // required: [true, "Please Enter Parent Occupation"]
     },
     motherStatus: {
         type: String,
-        required: [true, "Please Select Mother Status"]
+        // required: [true, "Please Select Mother Status"]
     },
     fatherStatus: {
         type: String,
-        required: [true, "Please Select Father Status"]
+        // required: [true, "Please Select Father Status"]
     },
     brothersMarried: {
-        type: Number
+        type: String
     },
     brothersUnMarried: {
-        type: Number
+        type: String
     },
     sistersMarried: {
-        type: Number
+        type: String
     },
     sistersUnMarried: {
-        type: Number
+        type: String
     },
     totalSiblings: {
-        type: Number
+        type: String
     },
     mothersMaternalSurname: {
         type: String,
-        required: [true, "Please Enter Mother's Maternal Surname"]
+        // required: [true, "Please Enter Mother's Maternal Surname"]
     },
     mothersMaternalNativePlace: {
         type: String,
-        required: [true, "Please Enter Mother's Maternal Native Place"]
+        // required: [true, "Please Enter Mother's Maternal Native Place"]
     },
     mothersMaternalPlaceDistrict: {
         type: String
     },
     education: {
         type: String,
-        required: [true, "Please Enter Education"]
+        // required: [true, "Please Enter Education"]
     },
     otherEducationalDetails: {
         type: String
     },
     jobOrOccupation: {
         type: String,
-        required: [true, "Please Enter Occupation Details"]
+        // required: [true, "Please Enter Occupation Details"]
     },
     jobOccupationDetails: {
         type: String
@@ -131,26 +134,26 @@ const userDataSchema = mongoose.Schema({
     },
     incomePerAnnum: {
         type: String,
-        required: [true, "Please Enter Income Salary"]
+        // required: [true, "Please Enter Income Salary"]
     },
     isPhysicallyChallenged: {
         type: String,
-        required: [true, "Please select an option"]
+        // required: [true, "Please select an option"]
     },
     physicallyChallengedDetails: {
         type: String
     },
     physique: {
         type: String,
-        required: [true, "Please select a physique"]
+        // required: [true, "Please select a physique"]
     },
     specsOrContactLenses: {
         type: String,
-        required: [true, "Please select specs"]
+        // required: [true, "Please select specs"]
     },
     skinComplexion: {
         type: String,
-        required: [true, "Please select Skin Complexion"]
+        // required: [true, "Please select Skin Complexion"]
     },
     horoscopeMatching: {
         type: String
@@ -169,33 +172,33 @@ const userDataSchema = mongoose.Schema({
     },
     country: {
         type: String,
-        required: [true, "Please select Country"]
+        // required: [true, "Please select Country"]
     },
     countryNameIfOutsideIndia: {
         type: String
     },
     address: {
         type: String,
-        required: [true, "Please Enter Address"]
+        // required: [true, "Please Enter Address"]
     },
     locationCity: {
         type: String,
-        required: [true, "Please Enter Location"]
+        // required: [true, "Please Enter Location"]
     },
     state: {
         type: String,
-        required: [true, "Please Enter State"]
+        // required: [true, "Please Enter State"]
     },
     pincode: {
         type: String,
-        required: [true, "Please Enter Pincode"]
+        // required: [true, "Please Enter Pincode"]
     },
     nativePlace: {
         type: String
     },
     nativePlaceTaluka: {
         type: String,
-        required: [true, "Please Enter Taluka"]
+        // required: [true, "Please Enter Taluka"]
     },
     nativePlaceDistrict: {
         type: String
@@ -208,15 +211,15 @@ const userDataSchema = mongoose.Schema({
     },
     closeRelativeName: {
         type: String,
-        required: [true, "Please Enter Mother Close Relative Name"]
+        // required: [true, "Please Enter Mother Close Relative Name"]
     },
     closeRelativeAddress: {
         type: String,
-        required: [true, "Please Enter Mother Close Relative Address"]
+        // required: [true, "Please Enter Mother Close Relative Address"]
     },
     closeRelativeContactDetails: {
         type: String,
-        required: [true, "Please Enter Mother Close Relative Contact Details"]
+        // required: [true, "Please Enter Mother Close Relative Contact Details"]
     },
     isSubCastePreferred: {
         type: String
@@ -246,7 +249,7 @@ const userDataSchema = mongoose.Schema({
 // const userDataSchema = mongoose.Schema({
 //     name : {
 //         type : String,
-//         required : true
+//         // required : true
 //     },
 //     image : {
 //         data : Buffer,

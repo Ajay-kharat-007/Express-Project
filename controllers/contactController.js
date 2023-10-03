@@ -10,6 +10,11 @@ const getContact = asyncHandler(async (req, res) => {
   res.status(200).json(contacts);
 });
 
+const getAllContact = asyncHandler(async(req, res)=>{
+  const contacts = await UserDataModel.find({});
+  res.status(200).json(contacts);
+})
+
 // @desc Create new contact
 // @route POST /api/contacts
 // @access private
@@ -119,4 +124,5 @@ module.exports = {
   updateContact,
   deleteContact,
   getContactById,
+  getAllContact
 };
