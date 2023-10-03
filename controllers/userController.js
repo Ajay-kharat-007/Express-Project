@@ -7,8 +7,8 @@ const User = require("../models/userModel");
 // @route POST / api/users/register
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { fname, lname, phone, email, password } = req.body;
+  if (!fname || !lname || !phone || !email || !password) {
     res.status(400);
     throw new Error("All fields are mandatory!");
   }
@@ -23,7 +23,9 @@ const registerUser = asyncHandler(async (req, res) => {
   // console.log("the register user function called")
   // console.log("Hashed Password: ", hashedPassword);
   const user = await User.create({
-    username,
+    fname,
+    lname,
+    phone,
     email,
     password
   });
@@ -61,7 +63,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const accessToken = jwt.sign(
       {
         user: {
-          username: user.username,
+          username: user.fname + user.lname,
           email: user.email,
           id: user.id,
         },
