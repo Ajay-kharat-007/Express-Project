@@ -55,10 +55,10 @@ const userDataSchema = mongoose.Schema({
         type: String,
         // required: [true, "Please Enter Mobile String"]
     },
-    image : {
-        data : Buffer,
-        contentType : String
-    },
+    // image : {
+    //     data : Buffer,
+    //     contentType : String
+    // },
     imagePath : {
         type : String
     },

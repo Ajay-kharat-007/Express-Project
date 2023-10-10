@@ -7,8 +7,8 @@ const User = require("../models/userModel");
 // @route POST / api/users/register
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
-  const { fname, lname, phone, email, password } = req.body;
-  if (!fname || !lname || !phone || !email || !password) {
+  const { firstName, lastName, phone, email, password, paymentStatus,  subscription} = req.body;
+  if (!firstName || !lastName || !phone || !email || !password || !paymentStatus || !subscription) {
     res.status(400);
     throw new Error("All fields are mandatory!");
   }
@@ -23,11 +23,17 @@ const registerUser = asyncHandler(async (req, res) => {
   // console.log("the register user function called")
   // console.log("Hashed Password: ", hashedPassword);
   const user = await User.create({
-    fname,
-    lname,
+    firstName,
+    lastName,
     phone,
+    fullName : firstName + " " + lastName,
     email,
-    password
+    password,
+    status : 'Active',
+    paymentStatus,
+    subscription,
+    subscriptionStartDate : new Date(),
+    subscriptionEndDate : new Date(new Date().setFullYear(new Date().getFullYear() + 1))
   });
 
   console.log(`User created ${user}`);
@@ -58,7 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
   // compare password with hashpassword
   // if (user && (await bcrypt.compare(password, user.password))) {
     console.log(user)
-    if (user && userPassword) {
+    if (user && userPassword && user.status == 'Active') {
     console.log(password)
     const accessToken = jwt.sign(
       {
@@ -69,12 +75,12 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      {expiresIn: "15m"}
+      {expiresIn: "45m"}
     );
     res.status(200).json({ accessToken });
   }else{
     res.status(401)
-    throw new Error("Email or Password is not valid");
+    throw new Error("Email or Password is not valid or Active");
   }
 });
 
@@ -82,7 +88,8 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route GET / api/users/current
 // @access private
 const currentUser = asyncHandler(async (req, res) => {
-  res.json(req.user);
+  contacts = await User.findOne({email : req.user.email})
+  res.json(contacts);
 });
 
 module.exports = { registerUser, loginUser, currentUser };
